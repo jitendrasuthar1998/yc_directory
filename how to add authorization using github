@@ -3,3 +3,5 @@ how to add authentication using Github?
 Auth.js
 
 Create OAuth app on github, and then get its client id and secret key and then add them into .env.local.
+
+
