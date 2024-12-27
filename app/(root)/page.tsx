@@ -1,8 +1,9 @@
 import React from 'react';
 import SearchForm from '../../components/SearchForm';
 import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
-import { client } from '@/sanity/lib/client';
+// import { client } from '@/sanity/lib/client';
 import { STARTUPS_QUERY } from '@/sanity/lib/queries';
+import { sanityFetch, SanityLive } from '@/sanity/lib/live';
 
 async function Home({
   searchParams,
@@ -11,8 +12,10 @@ async function Home({
 }) {
   const query = (await searchParams).query;
 
-  const posts = await client.fetch(STARTUPS_QUERY);
+  // const posts = await client.fetch(STARTUPS_QUERY);
 
+  // get live data without refreshing the web page
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY });
   console.log('posts', posts);
 
   return (
@@ -41,6 +44,7 @@ async function Home({
             : null}
         </ul>
       </section>
+      <SanityLive />
     </>
   );
 }
