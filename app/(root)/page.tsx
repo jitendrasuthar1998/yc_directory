@@ -13,9 +13,9 @@ async function Home({
   const query = (await searchParams).query;
 
   // const posts = await client.fetch(STARTUPS_QUERY);
-
+  const params = { search: query || null };
   // get live data without refreshing the web page
-  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY });
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
   console.log('posts', posts);
 
   return (
